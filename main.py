@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 from app.services import fetch_data
 from app.ui.equipamentos_tab import render_equipamentos_tab
@@ -38,6 +39,9 @@ def main():
     # --- Rodapé ---
     st.markdown("---")
     st.markdown("Desenvolvido para o Challenge da Fase 6 - FIAP.")
+
+    time.sleep(60)
+    st.rerun()
 
 if __name__ == "__main__":
     main()
