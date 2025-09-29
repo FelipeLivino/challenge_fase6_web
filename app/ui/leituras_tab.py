@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from app.config import TEMPERATURA_ALERTA
+from app.config import STATUS_ALERTA, STATUS_PERIGO
 
 def render_leituras_tab(df_leituras, df_equipamentos, df_sensores):
     """Renderiza a aba de leituras e análises."""
@@ -51,18 +51,23 @@ def render_leituras_tab(df_leituras, df_equipamentos, df_sensores):
             st.subheader("Alertas de Leituras Filtradas")
             
             # Alertas
-            leituras_alerta = leituras_filtradas[leituras_filtradas["temperatura"] > TEMPERATURA_ALERTA]
+            condicao_alerta = leituras_filtradas["status"] == STATUS_ALERTA
+            condicao_perigo = leituras_filtradas["status"] == STATUS_PERIGO
+            leituras_alerta = leituras_filtradas[condicao_alerta | condicao_perigo]
+
             if not leituras_alerta.empty:
-                st.error(f"🚨 ALERTA: {len(leituras_alerta)} leitura(s) de temperatura acima de {TEMPERATURA_ALERTA}°C detectada(s)!")
+                st.error(f"🚨 ALERTA: {len(leituras_alerta)} leitura(s) de STATUS {STATUS_ALERTA} e {STATUS_PERIGO} detectada(s)!")
                 for _, leitura in leituras_alerta.iterrows():
                     equip_info = df_equipamentos[df_equipamentos["id"] == leitura["t_equipamento_id"]]["nome_display"].iloc[0]
                     st.warning(
                         f"**Equipamento:** {equip_info} | "
                         f"**Temperatura Registrada:** {leitura['temperatura']:.2f}°C | "
+                        f"**Umidade Registrada:** {leitura['umidade']:.2f}% | "
+                        f"**Vibração Registrada:** {leitura['vibracao']:.2f} | "
                         f"**Data:** {pd.to_datetime(leitura['data_coleta']).strftime('%d/%m/%Y %H:%M')}"
                     )
             else:
-                st.success(f"✅ Nenhuma leitura de temperatura acima de {TEMPERATURA_ALERTA}°C. Todos os sistemas normais.")
+                st.success(f"✅ Nenhuma leitura de STATUS {STATUS_ALERTA} e {STATUS_PERIGO} encontrada. Todos os sistemas normais.")
 
         # KPIs
         st.subheader("KPIs das Leituras Filtradas")
