@@ -47,46 +47,47 @@ def render_leituras_tab(df_leituras, df_equipamentos, df_sensores):
 
     # --- KPIs e Alertas ---
     if not leituras_filtradas.empty:
-        st.subheader("KPIs e Análises das Leituras Filtradas")
-        
-        # Alertas
-        leituras_alerta = leituras_filtradas[leituras_filtradas["temperatura"] > TEMPERATURA_ALERTA]
-        if not leituras_alerta.empty:
-            st.error(f"🚨 ALERTA: {len(leituras_alerta)} leitura(s) de temperatura acima de {TEMPERATURA_ALERTA}°C detectada(s)!")
-            for _, leitura in leituras_alerta.iterrows():
-                equip_info = df_equipamentos[df_equipamentos["id"] == leitura["t_equipamento_id"]]["nome_display"].iloc[0]
-                st.warning(
-                    f"**Equipamento:** {equip_info} | "
-                    f"**Temperatura Registrada:** {leitura['temperatura']:.2f}°C | "
-                    f"**Data:** {pd.to_datetime(leitura['data_coleta']).strftime('%d/%m/%Y %H:%M')}"
-                )
-        else:
-            st.success(f"✅ Nenhuma leitura de temperatura acima de {TEMPERATURA_ALERTA}°C. Todos os sistemas normais.")
+        with st.container(height=300):
+            st.subheader("KPIs e Análises das Leituras Filtradas")
+            
+            # Alertas
+            leituras_alerta = leituras_filtradas[leituras_filtradas["temperatura"] > TEMPERATURA_ALERTA]
+            if not leituras_alerta.empty:
+                st.error(f"🚨 ALERTA: {len(leituras_alerta)} leitura(s) de temperatura acima de {TEMPERATURA_ALERTA}°C detectada(s)!")
+                for _, leitura in leituras_alerta.iterrows():
+                    equip_info = df_equipamentos[df_equipamentos["id"] == leitura["t_equipamento_id"]]["nome_display"].iloc[0]
+                    st.warning(
+                        f"**Equipamento:** {equip_info} | "
+                        f"**Temperatura Registrada:** {leitura['temperatura']:.2f}°C | "
+                        f"**Data:** {pd.to_datetime(leitura['data_coleta']).strftime('%d/%m/%Y %H:%M')}"
+                    )
+            else:
+                st.success(f"✅ Nenhuma leitura de temperatura acima de {TEMPERATURA_ALERTA}°C. Todos os sistemas normais.")
 
 
-        # KPIs
-        kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-        
-        avg_temp = leituras_filtradas["temperatura"].mean()
-        avg_umid = leituras_filtradas["umidade"].mean()
-        avg_vibr = leituras_filtradas["vibracao"].mean()
-        
-        kpi1.metric(
-            label="Temperatura Média (°C)",
-            value=f"{avg_temp:.2f}"
-        )
-        kpi2.metric(
-            label="Umidade Média (%)",
-            value=f"{avg_umid:.2f}"
-        )
-        kpi3.metric(
-            label="Vibração Média (g)",
-            value=f"{avg_vibr:.3f}"
-        )
-        kpi4.metric(
-            label="Nº de Alertas de Temp.",
-            value=len(leituras_alerta)
-        )
+            # KPIs
+            kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+            
+            avg_temp = leituras_filtradas["temperatura"].mean()
+            avg_umid = leituras_filtradas["umidade"].mean()
+            avg_vibr = leituras_filtradas["vibracao"].mean()
+            
+            kpi1.metric(
+                label="Temperatura Média (°C)",
+                value=f"{avg_temp:.2f}"
+            )
+            kpi2.metric(
+                label="Umidade Média (%)",
+                value=f"{avg_umid:.2f}"
+            )
+            kpi3.metric(
+                label="Vibração Média (g)",
+                value=f"{avg_vibr:.3f}"
+            )
+            kpi4.metric(
+                label="Nº de Alertas de Temp.",
+                value=len(leituras_alerta)
+            )
 
         # Gráfico de Linha
         st.subheader("Histórico de Leituras")
