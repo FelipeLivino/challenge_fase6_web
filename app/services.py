@@ -3,7 +3,6 @@ import requests
 import pandas as pd
 from app.config import API_URLS
 
-@st.cache_data(ttl=60) # Cache para evitar requisições repetidas
 def fetch_data(api_name):
     """Busca dados de uma API e retorna um DataFrame."""
     try:

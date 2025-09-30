@@ -20,9 +20,10 @@ def main():
     st.markdown("Acompanhe em tempo real os dados dos seus equipamentos e sensores.")
 
     # --- Carregamento dos Dados ---
-    df_equipamentos = fetch_data("equipamentos")
-    df_sensores = fetch_data("sensores")
-    df_leituras = fetch_data("leituras")
+    with st.spinner("Carregando dados..."):
+        df_equipamentos = fetch_data("equipamentos")
+        df_sensores = fetch_data("sensores")
+        df_leituras = fetch_data("leituras")
 
     # --- Abas da Aplicação ---
     tab_equip, tab_sensor, tab_leitura = st.tabs(["Equipamentos", "Sensores", "Leituras e Análises"])
