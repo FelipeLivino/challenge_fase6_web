@@ -37,10 +37,6 @@ O projeto tem como objetivo desenvolver uma solução inteligente para antecipar
 
 A aplicação será implantada na plataforma Heroku. O frontend será construído com Streamlit, que também servirá como interface para visualização dos dashboards e indicadores. Toda a lógica será implementada em Python, desde os simuladores até os modelos de previsão.
 
-## Arquitetura
-
-<image src="assets/arquitetura.png" alt="Arquitetura do projeto" width="100%" height="100%">
-
 ## 📁 Estrutura de pastas
 
 ```
@@ -70,59 +66,64 @@ C:.
     └───logo-fiap.png
 ```
 
-## 🛠️ Tecnologias Utilizadas
+# Dashboard de Monitoramento de Sensores Industriais
 
-🔧 Linguagem de Programação:
--	Python: Para o backend e manipulação de dados.
--	Streamlit: Para a criação do dashboard interativo.
-🌐 Frontend:
--	Streamlit: Framework para construção da interface do usuário.
-🧠 Inteligência Artificial:
--	Pandas e NumPy: Para manipulação e tratamento de dados.
--	Scikit-learn: Para a construção de modelos de machine learning.
-☁️ Servidor de Aplicação:
--	Heroku: Plataforma como serviço (PaaS) para implantação e hospedagem da aplicação.
+Este é o frontend da solução de monitoramento de sensores, desenvolvido para visualizar, gerenciar e analisar os dados coletados em tempo real. A interface foi construída utilizando **Streamlit** e se comunica com uma API backend para persistir e consultar as informações.
 
-## 📆 Plano Inicial de Desenvolvimento
+O dashboard permite a gestão completa dos ativos (equipamentos e sensores) e fornece uma visão analítica sobre as leituras, incluindo um sistema de alertas e KPIs para tomada de decisão.
 
-Etapas:
-1.	Frontend – Setup do Streamlit.
-2.	Sensores – Criação dos scripts simuladores em Python.
-3.	API – Desenvolvimento da API que recebe e processa dados dos sensores.
-4.	Banco de Dados – Estruturação do banco de dados.
-5.	Modelagem de ML – Modelos de previsão de falha.
-6.	Dashboard – Exibição dos dados e previsões no frontend.
+![Visão Geral do Dashboard](assets/01-dashboard-geral.png)
+> **Instrução para imagem:** Tire um screenshot da tela "Leituras e Análises" mostrando a tabela, os KPIs e os alertas.
 
+---
 
-## 📥 Estratégia de Coleta de Dados
+## Funcionalidades da Interface
 
-Simulação de Sensores
--	Utilizaremos scripts Python que simulam sensores industriais.
--	Serão gerados dados como: temperatura, vibração, tempo de uso, ciclos de operação, etc.
--	Os dados serão processados pela API da aplicação.
+A interface gráfica é dividida em três seções principais, conforme demonstrado na apresentação.
 
-## 📊 Justificativa
+### 1. Gestão de Equipamentos
 
-No setor industrial, falhas inesperadas em equipamentos podem gerar prejuízos significativos devido à paralisação de linhas de produção, manutenção corretiva emergencial e perda de produtividade. Apesar da presença de sensores nos equipamentos, muitas vezes os dados capturados não são utilizados de forma preditiva. Nosso projeto busca transformar esses dados em insights valiosos, utilizando aprendizado de máquina para prever falhas antes que elas ocorram, possibilitando ações preventivas e uma maior eficiência operacional.
+Esta seção permite o ciclo de vida completo do cadastro de equipamentos industriais.
 
-O projeto visa entregar uma solução inteligente e escalável para análise preditiva de falhas, utilizando tecnologias modernas de backend e frontend. A fase inicial foca em levantar a arquitetura, integrar os componentes básicos e montar uma base para aplicação de machine learning.
+* **Cadastro de Novos Equipamentos:** É possível adicionar um novo equipamento ao sistema informando sua **Marca**, **Modelo** e **Status** inicial (ex: Normal, Atenção, Falha).
+    ![Cadastro de Equipamento](assets/02-cadastro-equipamento.png)
+    > **Instrução para imagem:** Capture a tela com o formulário "Cadastrar Novo Equipamento" preenchido.
 
-## ✅ Funcionalidades previstas
+* **Edição de Equipamentos:** A plataforma permite selecionar um equipamento já existente e alterar suas informações, como a marca ou o modelo, garantindo que os dados estejam sempre atualizados.
+    ![Edição de Equipamento](assets/03-edicao-equipamento.png)
+    > **Instrução para imagem:** Capture a tela mostrando o formulário "Editar Equipamento" com um item selecionado.
 
-- Dashboard com índices de falha
-- Previsão de risco com base em sensores (ML)
-- APIs para ingestão de dados
-- Simuladores de sensores
-- Cache do estado atual dos equipamentos
+### 2. Gestão de Sensores
 
-## Divisão de Responsabilidades (exemplo):
+Similar à gestão de equipamentos, esta área é dedicada ao gerenciamento dos sensores que coletam os dados.
 
-- Membro	Responsabilidade
-- Gabriel	Frontend com Streamlit
-- Daniel F.	API em Python + Integração com sensores
-- Tomas	Simulador de sensores
-- Felipe	Configuração do Heroku
-- Daniel V.	Modelagem de ML
+* **Cadastro e Ativação de Sensores:** Novos sensores podem ser cadastrados com um nome e uma data de ativação.
+    ![Cadastro de Sensor](assets/04-cadastro-sensor.png)
+    > **Instrução para imagem:** Capture o formulário "Cadastrar Novo Sensor".
+
+* **Edição e Status:** É possível editar os dados de um sensor e alterar seu status (por exemplo, de "ATIVO" para "INATIVO"), facilitando a manutenção.
+    ![Edição de Sensor](assets/05-edicao-sensor.png)
+    > **Instrução para imagem:** Capture a tela de edição de um sensor, mostrando a mudança de status.
+
+### 3. Leituras e Análises
+
+Esta é a tela principal do dashboard, onde os dados são visualizados e analisados.
+
+* **Tabela de Leituras:** Exibe os dados brutos recebidos dos sensores em tempo real, ordenados do mais recente para o mais antigo. As colunas incluem temperatura, umidade, vibração e o status (`NORMAL` ou `PERIGO`) definido pelo modelo de Machine Learning no backend.
+
+* **Sistema de Alertas:** A seção **"Alertas de Leituras Filtradas"** é acionada automaticamente quando uma leitura é recebida com status de `PERIGO` ou `ALERTA`. Ela exibe um resumo do evento, incluindo o equipamento, os dados da leitura e a data/hora exata do ocorrido.
+    ![Alertas e KPIs](assets/06-alertas-kpis.png)
+    > **Instrução para imagem:** Dê um zoom na área que mostra os "Alertas" e os cards de "KPIs".
+
+* **KPIs (Key Performance Indicators):** Cards de fácil visualização apresentam métricas essenciais, como **Temperatura Média**, **Umidade Média**, **Vibração Média** e o **Número Total de Alertas** gerados.
+
+* **Histórico Gráfico:** Um gráfico de linhas plota o histórico das leituras de temperatura, umidade e vibração ao longo do tempo, permitindo a identificação de tendências e anomalias.
+    ![Gráfico Histórico](assets/07-grafico-historico.png)
+    > **Instrução para imagem:** Capture a parte da tela que mostra o gráfico "Histórico de Leituras".
+
+* **Filtros Dinâmicos:** A interface é interativa. O usuário pode filtrar todos os dados da tela (tabela, KPIs e gráfico) selecionando um **Equipamento** ou um **Sensor** específico. Caso não existam leituras para o filtro selecionado, uma mensagem informativa é exibida.
+    ![Filtros em Ação](assets/08-filtro-equipamento.png)
+    > **Instrução para imagem:** Capture a tela com um filtro de equipamento ou sensor aplicado, mostrando os dados mudando.
 
 ## 🔧 Como executar o código
 
