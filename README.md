@@ -80,6 +80,7 @@ O dashboard permite a gestão completa dos ativos (equipamentos e sensores) e fo
 ## Funcionalidades da Interface
 
 A interface gráfica é dividida em três seções principais, conforme demonstrado na apresentação.
+▶️ [Assista ao vídeo no YouTube](https://youtu.be/RgsAcX__7xw)
 
 ### 1. Gestão de Equipamentos
 
