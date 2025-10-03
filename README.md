@@ -72,8 +72,7 @@ Este é o frontend da solução de monitoramento de sensores, desenvolvido para 
 
 O dashboard permite a gestão completa dos ativos (equipamentos e sensores) e fornece uma visão analítica sobre as leituras, incluindo um sistema de alertas e KPIs para tomada de decisão.
 
-![Visão Geral do Dashboard](assets/01-dashboard-geral.png)
-> **Instrução para imagem:** Tire um screenshot da tela "Leituras e Análises" mostrando a tabela, os KPIs e os alertas.
+<image src="assets/arquitetura.png" alt="Visao geral do dashboard" width="100%" height="100%">
 
 ---
 
@@ -87,20 +86,16 @@ A interface gráfica é dividida em três seções principais, conforme demonstr
 Esta seção permite o ciclo de vida completo do cadastro de equipamentos industriais.
 
 * **Cadastro de Novos Equipamentos:** Ao clicar em **Adicionar equipamento** é possível adicionar um novo equipamento ao sistema informando sua **Marca**, **Modelo** e **Status** inicial (ex: Normal, Atenção, Falha).
-    ![Cadastro de Equipamento](assets/02-cadastro-equipamento.png)
-    > **Instrução para imagem:** Capture a tela com o formulário "Cadastrar Novo Equipamento" preenchido.
+<image src="assets/arquitetura.png" alt="Cadastro de equipamento" width="100%" height="100%">
 
 * **Edição de Equipamentos:** A plataforma permite selecionar um equipamento já existente e alterar suas informações, como a marca ou o modelo, garantindo que os dados estejam sempre atualizados.
-    ![Edição de Equipamento](assets/03-edicao-equipamento.png)
-    > **Instrução para imagem:** Capture a tela mostrando o formulário "Editar Equipamento" com um item selecionado.
 
 ### 2. Gestão de Sensores
 
 Similar à gestão de equipamentos, esta área é dedicada ao gerenciamento dos sensores que coletam os dados.
 
 * **Cadastro e Ativação de Sensores:** Novos sensores podem ser cadastrados com um nome e uma data de ativação.
-    ![Cadastro de Sensor](assets/04-cadastro-sensor.png)
-    > **Instrução para imagem:** Capture o formulário "Cadastrar Novo Sensor".
+<image src="assets/arquitetura.png" alt="Cadastro de sensor" width="100%" height="100%">
 
 * **Edição e Status:** É possível editar os dados de um sensor e alterar seu status (por exemplo, de "ATIVO" para "INATIVO"), facilitando a manutenção.
     ![Edição de Sensor](assets/05-edicao-sensor.png)
