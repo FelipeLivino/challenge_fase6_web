@@ -185,14 +185,18 @@ Esta função é responsável por formatar e transmitir as informações para o 
 
 ## 🔧 Como executar o código
 
-Para executar o código deste projeto, siga os passos abaixo:
+1.  **Inicie o Sensor Virtual no Wokwi:**
+    - Acesse a simulação do sensor ESP32 através deste link:
+      - **[Wokwi - Simulação do Sensor ESP32](https://wokwi.com/projects/431968269578375169)**
+    - Clique no botão de **play (▶️)** para iniciar a simulação. O ESP32 irá se conectar ao Wi-Fi, calibrar e começar a enviar dados em tempo real para a API.
 
-_Pré-requisitos:_
+2.  **Abra o Dashboard Online:**
+    - Em outra aba do seu navegador, acesse o link do nosso servidor web:
+      - **[Dashboard de Monitoramento](https://reply-web-5ff86c92bd5e.herokuapp.com/)**
 
-- Python 3.8+ instalado
-- Heroku CLI (opcional para deploy)
-
-## 🗃 Histórico de lançamentos
+3.  **Visualize e Interaja:**
+    - Pronto! Você verá as leituras geradas pelo Wokwi aparecendo no dashboard.
+    - **Para gerar alertas:** Volte na aba do Wokwi e interaja com os componentes, como **aumentar o valor do sensor de vibração**. Você verá o status mudar para `PERIGO` no monitor serial do Wokwi e um novo alerta aparecerá no dashboard.
 
 ## 📋 Licença
 
