@@ -117,90 +117,48 @@ Esta é a tela principal do dashboard, onde os dados são visualizados e analisa
 
 * **Filtros Dinâmicos:** A interface é interativa. O usuário pode filtrar todos os dados da tela (tabela, KPIs e gráfico) selecionando um **Equipamento** ou um **Sensor** específico. Caso não existam leituras para o filtro selecionado, uma mensagem informativa é exibida.
 
-# Código do Sensor ESP32 (Simulação Wokwi)
+## Arquitetura do Circuito Feito no Wokwi.com
 
-Este diretório contém o código-fonte para o microcontrolador ESP32, projetado para ser executado no ambiente de simulação online **Wokwi**.
+<image src="assets/wokwi.png" alt="Circuito no Wokwi" width="100%" height="100%">
 
-O objetivo deste código é simular um sensor industrial que coleta dados de temperatura, umidade e vibração, e os envia para uma API de monitoramento para análise e armazenamento.
+### **Análise do Código do Circuito (`.ino`)**
 
----
+O código em C++ para o ESP32 foi atualizado e reestruturado para otimizar a coleta e o envio de dados dos sensores de monitoramento industrial. A seguir, os principais blocos de funcionamento:
 
-## Principais Características e Melhorias
+#### **Configuração Inicial (`setup`)**
 
-Esta versão do código foi atualizada com foco em melhores práticas e maior desacoplamento de responsabilidades, conforme descrito abaixo:
+Nesta etapa, o ambiente do microcontrolador é preparado para a operação.
 
-### 1. Delegação da Lógica de Status para a API
+- **Inicialização de Comunicação e Sensores:**
+  - Inicializa a comunicação serial para fins de debug e monitoramento.
+  - Inicia os sensores de temperatura/umidade (DHT) e vibração (acelerômetro).
+- **Conexão Wi-Fi:**
+  - Estabelece a conexão com a rede Wi-Fi utilizando as credenciais fornecidas.
+- **Calibração dos Sensores:**
+  - Executa um processo de calibração inicial para garantir a precisão das leituras. O número de amostras para a calibração pode ser ajustado diretamente no código.
 
-Anteriormente, o próprio sensor poderia tentar determinar o status do equipamento. Nesta versão, essa responsabilidade foi removida do microcontrolador.
+#### **Loop Principal (`loop`)**
 
-* **O campo `status` não é mais enviado no payload:** O ESP32 agora se concentra exclusivamente em coletar e enviar os **dados brutos** dos sensores.
-* **Inteligência no Backend:** A lógica para determinar se a condição é `NORMAL`, `PERIGO` ou `ALERTA` é gerenciada inteiramente pela API, que utiliza um modelo de Machine Learning para analisar os dados recebidos. Isso torna o código do sensor mais simples, leve e focado.
+O coração do programa, onde a coleta e o envio de dados ocorrem de forma contínua e eficiente.
 
-### 2. Remoção de `delay()` (Boas Práticas)
+- **Leitura Otimizada dos Sensores:**
+  - Em vez de usar `delay()`, que bloqueia o processador, o loop utiliza uma **medição de tempo baseada em `millis()`**. Essa abordagem de boas práticas permite que o ESP32 continue responsivo enquanto aguarda o intervalo para a próxima coleta de dados.
+  - Realiza a leitura dos valores de temperatura, umidade e vibração.
+- **Envio Direto dos Dados:**
+  - Após cada ciclo de leitura, os dados são imediatamente preparados e enviados para a API, garantindo que as informações cheguem ao backend em tempo real.
 
-Para otimizar o desempenho e a responsividade do microcontrolador, a função `delay()` foi substituída.
+#### **Envio de Dados (Função de Envio HTTP)**
 
-* **Medição de Tempo Não-Bloqueante:** O código agora utiliza uma abordagem baseada em medição de tempo (usando `millis()`), que permite que o ESP32 execute outras tarefas enquanto aguarda o próximo ciclo de leitura, em vez de "congelar" o processador.
+Esta função é responsável por formatar e transmitir as informações para o servidor.
 
----
+- **Formatação JSON:**
+  - Os dados coletados (temperatura, umidade, vibração) e os identificadores (`equipamento_id`, `sensor_id`) são formatados em um objeto JSON.
+  > **Importante:** O campo `status` foi intencionalmente removido do payload. A responsabilidade de analisar os dados e determinar o estado do equipamento (`NORMAL`, `PERIGO`, etc.) foi delegada à API, que utiliza um modelo de Machine Learning.
+- **Requisição HTTP POST:**
+  - Utilizando a biblioteca `HTTPClient`, a função envia os dados formatados para o endpoint do web service (`/leitura-sensor`).
+- **Feedback da Análise Remota:**
+  - O código de resposta da API, que agora inclui o `status` determinado pelo modelo de ML, é impresso no monitor serial. Isso permite verificar em tempo real não apenas o sucesso do envio, mas também o resultado da análise inteligente feita no backend.
 
-## Como Executar e Testar a Simulação
-
-Siga os passos abaixo para interagir com o projeto no Wokwi.
-
-### 1. Iniciar a Simulação
-   - Abra o projeto no Wokwi e clique no botão de "Play" (▶️) para iniciar a execução do código.
-
-### 2. Observar a Calibração
-   - No início, o sensor executa um rápido processo de calibração. No código atual, ele está configurado para coletar **2 amostras**, mas este valor pode ser facilmente aumentado para uma calibração mais precisa.
-
-### 3. Monitorar o Envio de Dados (Status Normal)
-   - Após a calibração, o ESP32 começará a enviar leituras para a API em intervalos regulares.
-   - Observe o **Serial Monitor** na parte inferior da tela. Você verá a resposta da API, que deve indicar um status **`"NORMAL"`** sob condições padrão.
-
-    ```json
-    // Exemplo de resposta da API no Serial Monitor
-    {
-      "id": 302,
-      "status": "NORMAL",
-      "equipamento_id": 1,
-      ...
-    }
-    ```
-
-### 4. Simular um Alerta (Gerar "PERIGO")
-   - A grande vantagem do Wokwi é a interatividade. Para testar o sistema de alertas:
-   - **Altere o valor de um sensor:** Clique e arraste o controle do **sensor de vibração** (acelerômetro) para simular uma vibração excessiva no equipamento.
-   - **Observe a Resposta:** Imediatamente, a próxima leitura enviada à API será analisada pelo modelo de Machine Learning, e a resposta retornada no Serial Monitor mudará para **`"PERIGO"`**.
-
-    ```json
-    // Exemplo de resposta da API após simular alta vibração
-    {
-      "id": 303,
-      "status": "PERIGO",
-      "equipamento_id": 1,
-      ...
-    }
-    ```
-
-Este teste confirma que todo o fluxo (coleta, envio, análise de ML e resposta) está funcionando corretamente. Os dados enviados, incluindo os alertas, serão refletidos em tempo real no [Dashboard de Monitoramento](#link-para-o-readme-do-dashboard).
-
----
-
-## Estrutura do Payload Enviado à API
-
-O ESP32 monta e envia um JSON com a seguinte estrutura para o endpoint do web service:
-
-```json
-{
-  "temperatura": 24.0,
-  "umidade": 60.0,
-  "vibracao": 1.4706,
-  "data_coleta": "2025-10-02T15:30:00",
-  "t_equipamento_id": 1,
-  "t_sensor_id": 2
-}
-```
 ## 🔧 Como executar o código
 
 Para executar o código deste projeto, siga os passos abaixo:
