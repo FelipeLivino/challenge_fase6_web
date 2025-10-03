@@ -35,6 +35,32 @@ Rumo ao NEXT
 
 Este repositório apresenta o frontend de um sistema de monitoramento para sensores industriais, desenvolvido em Python com a biblioteca **Streamlit**. A aplicação serve como um dashboard interativo para visualizar em tempo real os dados de temperatura, umidade e vibração coletados por um sensor **ESP32**, simulado na plataforma **Wokwi**. A interface permite não só o gerenciamento completo de equipamentos e sensores, mas também exibe alertas automáticos gerados por um modelo de **Machine Learning** no backend, que analisa os dados e classifica o estado de operação dos equipamentos. Adicionalmente, o painel oferece KPIs e gráficos históricos para uma análise aprofundada do comportamento dos ativos monitorados.
 
+## Arquitetura 
+
+A primeira arquitetura é uma visão **simplificada** e **didática**, que mostra as principais ferramentas utilizadas:
+
+<image src="assets/arquitetura_generalista.png" alt="Arquitetura do projeto" width="100%" height="100%">
+
+### **Componentes**
+- **ESP32 (Wokwi):** simulação de sensores de temperatura, umidade e vibração.  
+- **FastAPI (Python):** serviço de API para ingestão e processamento dos dados.  
+- **PostgreSQL:** banco de dados relacional para armazenamento confiável.  
+- **Streamlit:** dashboard interativo para visualização de KPIs e alertas.  
+- **Heroku:** plataforma em nuvem utilizada para hospedagem da API e do dashboard.  
+
+A segunda arquitetura apresenta um nível **mais complexo e técnico**, incluindo o fluxo de dados, APIs e modelo de banco relacional.
+
+<image src="assets/arquitetura.png" alt="Arquitetura do projeto" width="100%" height="100%">
+
+### **Fluxo de Dados**
+1. **Sensores (Temperatura, Umidade, Vibração):** enviam dados via ESP32.  
+2. **ESP32:** transmite as leituras utilizando protocolo **HTTPS**.  
+3. **API Backend (FastAPI):** recebe os dados, processa e integra com o banco.  
+4. **Banco de Dados (PostgreSQL):** armazena informações de equipamentos, sensores e leituras.  
+5. **Machine Learning:** modelo treinado integrado ao backend, realizando inferências.  
+6. **API Frontend + Streamlit:** consome os dados da API e exibe no dashboard.  
+7. **Dashboard dos Equipamentos:** visualização final para monitoramento e alertas.
+
 ## 📁 Estrutura de pastas
 
 ```
