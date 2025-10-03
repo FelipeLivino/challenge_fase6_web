@@ -119,7 +119,7 @@ Esta é a tela principal do dashboard, onde os dados são visualizados e analisa
 
 ## Arquitetura do Circuito Feito no Wokwi.com
 
-<image src="assets/wokwi.png" alt="Circuito no Wokwi" width="100%" height="100%">
+<image src="assets/Wokwi.png" alt="Circuito no Wokwi" width="100%" height="100%">
 
 ### **Análise do Código do Circuito (`.ino`)**
 
