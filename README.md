@@ -198,6 +198,18 @@ Esta função é responsável por formatar e transmitir as informações para o 
     - Pronto! Você verá as leituras geradas pelo Wokwi aparecendo no dashboard.
     - **Para gerar alertas:** Volte na aba do Wokwi e interaja com os componentes, como **aumentar o valor do sensor de vibração**. Você verá o status mudar para `PERIGO` no monitor serial do Wokwi e um novo alerta aparecerá no dashboard.
 
+## Links de repositórios e servidor 
+
+Link do repositório de API:  https://github.com/FelipeLivino/challenge_fase6_web
+
+Link do repositório web: https://github.com/FelipeLivino/challenge_fase6_api/tree/main
+
+Link servidor web: https://reply-web-5ff86c92bd5e.herokuapp.com/
+
+Link servidor API: https://reply-api-15a7328429e3.herokuapp.com/
+
+Link Wokiwi: https://wokwi.com/projects/431968269578375169
+
 ## 📋 Licença
 
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
