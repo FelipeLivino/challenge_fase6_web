@@ -112,11 +112,10 @@ Esta é a tela principal do dashboard, onde os dados são visualizados e analisa
 * **KPIs (Key Performance Indicators):** Cards de fácil visualização apresentam métricas essenciais, como **Temperatura Média**, **Umidade Média**, **Vibração Média** e o **Número Total de Alertas** gerados.
 
 * **Histórico Gráfico:** Um gráfico de linhas plota o histórico das leituras de temperatura, umidade e vibração ao longo do tempo, permitindo a identificação de tendências e anomalias.
-<image src="assets/KPIs.png" alt="Grafico de visualização" width="100%" height="100%">
+<image src="assets/KPIs .png" alt="Grafico de visualização" width="100%" height="100%">
 
 
 * **Filtros Dinâmicos:** A interface é interativa. O usuário pode filtrar todos os dados da tela (tabela, KPIs e gráfico) selecionando um **Equipamento** ou um **Sensor** específico. Caso não existam leituras para o filtro selecionado, uma mensagem informativa é exibida.
-<image src="assets/adicionarSensor.png" alt="Cadastro de sensor" width="100%" height="100%">
 
 ## 🔧 Como executar o código
 
