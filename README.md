@@ -106,7 +106,7 @@ Esta é a tela principal do dashboard, onde os dados são visualizados e analisa
 * **Tabela de Leituras:** Exibe os dados brutos recebidos dos sensores em tempo real, ordenados do mais recente para o mais antigo. As colunas incluem temperatura, umidade, vibração e o status (`NORMAL` ou `PERIGO`) definido pelo modelo de Machine Learning no backend.
 
 * **Sistema de Alertas:** A seção **"Alertas de Leituras Filtradas"** é acionada automaticamente quando uma leitura é recebida com status de `PERIGO` ou `ALERTA`. Ela exibe um resumo do evento, incluindo o equipamento, os dados da leitura e a data/hora exata do ocorrido.
-<image src="assets/leituras.png" alt="Tabela de leituras" width="100%" height="100%">
+<image src="assets/Leituras.png" alt="Tabela de leituras" width="100%" height="100%">
 
 
 * **KPIs (Key Performance Indicators):** Cards de fácil visualização apresentam métricas essenciais, como **Temperatura Média**, **Umidade Média**, **Vibração Média** e o **Número Total de Alertas** gerados.
