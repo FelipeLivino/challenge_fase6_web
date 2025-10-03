@@ -86,7 +86,7 @@ A interface gráfica é dividida em três seções principais, conforme demonstr
 
 Esta seção permite o ciclo de vida completo do cadastro de equipamentos industriais.
 
-* **Cadastro de Novos Equipamentos:** É possível adicionar um novo equipamento ao sistema informando sua **Marca**, **Modelo** e **Status** inicial (ex: Normal, Atenção, Falha).
+* **Cadastro de Novos Equipamentos:** Ao clicar em **Adicionar equipamento** é possível adicionar um novo equipamento ao sistema informando sua **Marca**, **Modelo** e **Status** inicial (ex: Normal, Atenção, Falha).
     ![Cadastro de Equipamento](assets/02-cadastro-equipamento.png)
     > **Instrução para imagem:** Capture a tela com o formulário "Cadastrar Novo Equipamento" preenchido.
 
