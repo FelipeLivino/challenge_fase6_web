@@ -33,9 +33,7 @@ Rumo ao NEXT
 
 ## 📜 Descrição
 
-O projeto tem como objetivo desenvolver uma solução inteligente para antecipar falhas em equipamentos industriais por meio de sensores conectados e algoritmos de machine learning. A aplicação será responsável por monitorar continuamente os dados gerados por máquinas, processá-los em tempo real e utilizar modelos preditivos para indicar riscos de falha. Além disso, a plataforma contará com um dashboard interativo para visualização dos dados, índices de falha e status dos equipamentos.
-
-A aplicação será implantada na plataforma Heroku. O frontend será construído com Streamlit, que também servirá como interface para visualização dos dashboards e indicadores. Toda a lógica será implementada em Python, desde os simuladores até os modelos de previsão.
+Este repositório apresenta o frontend de um sistema de monitoramento para sensores industriais, desenvolvido em Python com a biblioteca **Streamlit**. A aplicação serve como um dashboard interativo para visualizar em tempo real os dados de temperatura, umidade e vibração coletados por um sensor **ESP32**, simulado na plataforma **Wokwi**. A interface permite não só o gerenciamento completo de equipamentos e sensores, mas também exibe alertas automáticos gerados por um modelo de **Machine Learning** no backend, que analisa os dados e classifica o estado de operação dos equipamentos. Adicionalmente, o painel oferece KPIs e gráficos históricos para uma análise aprofundada do comportamento dos ativos monitorados.
 
 ## 📁 Estrutura de pastas
 
