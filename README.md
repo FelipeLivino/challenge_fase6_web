@@ -98,8 +98,6 @@ Similar à gestão de equipamentos, esta área é dedicada ao gerenciamento dos 
 <image src="assets/adicionarSensor.png" alt="Cadastro de sensor" width="100%" height="100%">
 
 * **Edição e Status:** É possível editar os dados de um sensor e alterar seu status (por exemplo, de "ATIVO" para "INATIVO"), facilitando a manutenção.
-    ![Edição de Sensor](assets/05-edicao-sensor.png)
-    > **Instrução para imagem:** Capture a tela de edição de um sensor, mostrando a mudança de status.
 
 ### 3. Leituras e Análises
 
@@ -108,18 +106,17 @@ Esta é a tela principal do dashboard, onde os dados são visualizados e analisa
 * **Tabela de Leituras:** Exibe os dados brutos recebidos dos sensores em tempo real, ordenados do mais recente para o mais antigo. As colunas incluem temperatura, umidade, vibração e o status (`NORMAL` ou `PERIGO`) definido pelo modelo de Machine Learning no backend.
 
 * **Sistema de Alertas:** A seção **"Alertas de Leituras Filtradas"** é acionada automaticamente quando uma leitura é recebida com status de `PERIGO` ou `ALERTA`. Ela exibe um resumo do evento, incluindo o equipamento, os dados da leitura e a data/hora exata do ocorrido.
-    ![Alertas e KPIs](assets/06-alertas-kpis.png)
-    > **Instrução para imagem:** Dê um zoom na área que mostra os "Alertas" e os cards de "KPIs".
+<image src="assets/adicionarSensor.png" alt="Cadastro de sensor" width="100%" height="100%">
+
 
 * **KPIs (Key Performance Indicators):** Cards de fácil visualização apresentam métricas essenciais, como **Temperatura Média**, **Umidade Média**, **Vibração Média** e o **Número Total de Alertas** gerados.
 
 * **Histórico Gráfico:** Um gráfico de linhas plota o histórico das leituras de temperatura, umidade e vibração ao longo do tempo, permitindo a identificação de tendências e anomalias.
-    ![Gráfico Histórico](assets/07-grafico-historico.png)
-    > **Instrução para imagem:** Capture a parte da tela que mostra o gráfico "Histórico de Leituras".
+<image src="assets/adicionarSensor.png" alt="Cadastro de sensor" width="100%" height="100%">
+
 
 * **Filtros Dinâmicos:** A interface é interativa. O usuário pode filtrar todos os dados da tela (tabela, KPIs e gráfico) selecionando um **Equipamento** ou um **Sensor** específico. Caso não existam leituras para o filtro selecionado, uma mensagem informativa é exibida.
-    ![Filtros em Ação](assets/08-filtro-equipamento.png)
-    > **Instrução para imagem:** Capture a tela com um filtro de equipamento ou sensor aplicado, mostrando os dados mudando.
+<image src="assets/adicionarSensor.png" alt="Cadastro de sensor" width="100%" height="100%">
 
 ## 🔧 Como executar o código
 
